@@ -1,0 +1,10 @@
+{
+  "network": "mainnet",
+  "indexer": "https://indexer-a.ootle.tari.com",
+  "explorer": "https://explorer.tari.mw",
+  "templateAddress": "template_6494a4fe7ea2de9276aada3b77086dfc14242fe4b96629a694745b24e49fb2d2",
+  "publishTx": "c2648d777dba9d6c063f02b91f02d92b016b020a2551ac7e2edfcb027822b150",
+  "publishedAt": "2026-11-20 19:57:45 UTC (epoch 39100)",
+  "demoSplit": "component_FILL_AFTER_INSTANTIATE",
+  "repo": "https://github.com/Techkeyy/ootle-split"
+}

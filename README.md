@@ -10,16 +10,29 @@ Built for the Tari November Build Contest (MVP) on Ootle mainnet.
 
 ## Mainnet deployment
 
+Published on Tari Ootle mainnet on **2026-11-20 at 19:57:45 UTC (epoch 39100)**.
+
 | | |
 |---|---|
-| Network | Tari Ootle mainnet |
-| Template | `template_FILL_AFTER_PUBLISH` |
-| Publish tx | `FILL` · [explorer](https://explorer.tari.mw/tx/FILL) · [indexer](https://indexer-a.ootle.tari.com/transactions/FILL) |
-| Published (UTC) | FILL (epoch FILL) |
-| Demo split | `component_FILL` · [state](https://indexer-a.ootle.tari.com/substates/component_FILL?local_search_only=false) |
-| Published wasm | `dist/ootle_split.wasm`, 180,720 bytes, sha256 `0552dbc887d1072d11039b405981d36a5d04369d8d380fb154449b918ad0416e` |
+| Template | `template_6494a4fe7ea2de9276aada3b77086dfc14242fe4b96629a694745b24e49fb2d2` ([indexer](https://indexer-a.ootle.tari.com/substates/template_6494a4fe7ea2de9276aada3b77086dfc14242fe4b96629a694745b24e49fb2d2?local_search_only=false)) |
+| Publish tx | `c2648d777dba9d6c063f02b91f02d92b016b020a2551ac7e2edfcb027822b150` |
+| Proof links | [explorer](https://explorer.tari.mw/tx/c2648d777dba9d6c063f02b91f02d92b016b020a2551ac7e2edfcb027822b150) · [indexer](https://indexer-a.ootle.tari.com/transactions/c2648d777dba9d6c063f02b91f02d92b016b020a2551ac7e2edfcb027822b150) |
+| Status | Accepted (Commit). Final fee 1,254,804 µT (about 1.25 TARI). |
+| Template name | `Split`, 150,442 bytes on chain |
+| Publisher | account `component_bbec55ccd1f4191208a4cb572e87a5b54eeb9c476f200cc12eda5ee26a26a0fc` |
+| Demo split | `component_FILL` ([state](https://indexer-a.ootle.tari.com/substates/component_FILL?local_search_only=false)) |
 
-Raw indexer answers for these transactions are kept in `evidence/mainnet/`.
+**Which binary is on chain.**
+- `scripts/build.sh` produces `dist/ootle_split.wasm`: 180,720 bytes, sha256 `0552dbc887d1072d11039b405981d36a5d04369d8d380fb154449b918ad0416e`. That is the file uploaded in the wallet.
+- The wallet daemon runs a wasm optimizer before it publishes, so the template substate holds a smaller binary: 150,442 bytes, sha256 `67b42d684ee01448b885fe98672019bf823639dac612384e2314bd0261f510ca`. It is saved as `evidence/mainnet/onchain-template.wasm`.
+- Both binaries carry the same `tari_tdef` template definition section, byte for byte. Both have the same imports and the same `/build/.cargo` path remap, which only `scripts/build.sh` produces.
+- The code section shrank from 165,720 to 136,078 bytes, and a DataCount section was added, which is typical of a Binaryen wasm-opt pass.
+- The ghostline entry documents the same walletd behaviour.
+
+The evidence is in `evidence/mainnet/`:
+- the wallet receipt (`tx-c2648d777dba9d6c063f02b91f02d92b016b020a2551ac7e2edfcb027822b150.json`);
+- the indexer's transaction and template answers (`indexer-tx.json`, `indexer-template.json`);
+- the on-chain binary (`onchain-template.wasm`).
 
 ## Template API
 
@@ -75,7 +88,7 @@ You need an Ootle mainnet account with about 2 TARI of **public (revealed)** bal
 5. Click **Estimate fee**. This is a dry run and fills **Max Fee** in microTARI.
 6. Click **Publish**.
 7. Under **Transactions**, open the new transaction and wait for it to be accepted. Copy the transaction id and the `template_...` address from its result.
-8. Fill in `web/config.json` and the table above. Save the raw answer from `https://indexer-a.ootle.tari.com/transactions/<tx>` into `evidence/mainnet/`.
+8. Fill in `docs/config.json` and the table above. Save the raw answer from `https://indexer-a.ootle.tari.com/transactions/<tx>` into `evidence/mainnet/`.
 
 If fee estimation fails with a missing substate or vault error, the account either does not exist on chain yet or holds only sealed (stealth) TARI. Send a small public transfer to yourself, then try again.
 
@@ -102,12 +115,12 @@ You can also use the wallet app's **Manifest** page. Paste a manifest from `mani
 
 ## Web page
 
-`web/` is a static page with no build step that can be served from GitHub Pages or Vercel. Set `web/config.json` after publishing.
+`docs/` is a static page with no build step. On GitHub Pages, choose Settings → Pages → Deploy from branch → `main` → `/docs`. It also deploys as-is on Vercel, with `docs` as the output directory. Addresses live in `docs/config.json`.
 - It shows the template address and the publish transaction, with explorer and indexer links. It also checks that the template is live on the indexer.
 - It reads any split's state from the public indexer (`/substates/<component>`): label, recipients, shares, the undistributed balance, totals, and what each recipient would receive if `distribute()` ran now.
 - **Experimental:** it can connect to the Sapient browser wallet (`window.tari`) and request a `distribute()` call. Creating a split and depositing are not wired to Sapient. The page shows wallet-app manifests for those steps instead.
 
-To serve it locally, run `npx serve web` or `python -m http.server -d web`.
+To serve it locally, run `npx serve docs` or `python -m http.server -d docs`.
 
 ## License
 

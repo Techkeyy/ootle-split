@@ -1,6 +1,6 @@
 // Paste into the wallet app's Manifest page. Set variable: account = your component_... address.
 // Replace the template hex and recipient component addresses. Shares are basis points summing to 10000.
-use template_PUBLISHED_TEMPLATE_HEX as Split;
+use template_6494a4fe7ea2de9276aada3b77086dfc14242fe4b96629a694745b24e49fb2d2 as Split;
 
 fn fee_main() {
     let account = var!["account"];
