@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ootle Split</title>
+<meta name="description" content="Immutable on-chain revenue and prize splitter on Tari Ootle mainnet.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Ootle Split</h1>
+  <p class="lede">An on-chain splitter for team prizes and revenue on Tari Ootle. Recipients and shares are fixed when the split is created. Anyone can deposit; anyone can call <code>distribute()</code>; everyone gets their share.</p>
+  <p class="net" id="net">Tari Ootle <b id="net-name">mainnet</b> · indexer <span id="net-epoch">…</span></p>
+</header>
+
+<main>
+  <section>
+    <h2>Template</h2>
+    <dl class="kv">
+      <dt>Template address</dt><dd><code id="tpl">…</code> <a id="tpl-link" target="_blank" rel="noopener">indexer</a></dd>
+      <dt>Publish transaction</dt><dd><code id="ptx">…</code> <a id="ptx-explorer" target="_blank" rel="noopener">explorer</a> · <a id="ptx-indexer" target="_blank" rel="noopener">indexer</a></dd>
+      <dt>Published</dt><dd id="pat">…</dd>
+      <dt>Template on chain</dt><dd id="tpl-status">checking…</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Read a split</h2>
+    <form id="read-form" class="row">
+      <input id="comp" placeholder="component_…" spellcheck="false" autocomplete="off">
+      <button type="submit">Load</button>
+    </form>
+    <p id="read-status" class="status"></p>
+    <div id="split" hidden>
+      <dl class="kv">
+        <dt>Label</dt><dd id="s-label"></dd>
+        <dt>Undistributed balance</dt><dd id="s-balance"></dd>
+        <dt>Total deposited</dt><dd id="s-deposited"></dd>
+        <dt>Total distributed</dt><dd id="s-distributed"></dd>
+        <dt>Distributions</dt><dd id="s-rounds"></dd>
+        <dt>Substate version</dt><dd id="s-version"></dd>
+      </dl>
+      <table>
+        <thead><tr><th>Recipient</th><th class="num">Share</th><th class="num">Next payout*</th></tr></thead>
+        <tbody id="s-recipients"></tbody>
+      </table>
+      <p class="fine">* What each recipient would get if <code>distribute()</code> ran now: floor(balance × share / 10000). Dust stays in the vault.</p>
+      <p><a id="s-raw" target="_blank" rel="noopener">Raw substate on the indexer</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Act on it</h2>
+    <p>Distribute with the Sapient browser wallet (experimental), or use the commands below with your own wallet.</p>
+    <div class="row">
+      <button id="connect">Connect Sapient</button>
+      <button id="distribute" disabled>Distribute this split</button>
+    </div>
+    <p id="wallet-status" class="status"></p>
+    <details>
+      <summary>Wallet app manifests (paste into the Manifest page)</summary>
+      <p>Create a split (shares in basis points, must sum to 10000). Set the variable <code>account</code> to your account's <code>component_…</code> address.</p>
+      <pre id="m-create"></pre>
+      <p>Deposit 1 TARI (1,000,000 microTARI):</p>
+      <pre id="m-deposit"></pre>
+      <p>Distribute:</p>
+      <pre id="m-distribute"></pre>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <p>MIT licensed · <a id="repo" target="_blank" rel="noopener">source</a> · Reads only from the public indexer; this page holds no keys.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+:root { --bg:#fbfbfa; --fg:#1b1b1a; --muted:#6b6a66; --line:#e3e2de; --accent:#5b3fd6; --ok:#1d7a46; --bad:#b3261e; --code:#f1f0ec; }
+@media (prefers-color-scheme: dark) { :root { --bg:#121211; --fg:#ecebe7; --muted:#9a9993; --line:#2c2c2a; --accent:#a996ff; --ok:#58c48a; --bad:#ff8a80; --code:#1d1d1b; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header, main, footer { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 40px; }
+h1 { font-size: 2rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+h2 { font-size: 1.1rem; margin: 0 0 12px; }
+.lede { color: var(--muted); max-width: 62ch; margin: 0 0 8px; }
+.net { font-size: .85rem; color: var(--muted); }
+section { border-top: 1px solid var(--line); padding: 24px 0; }
+code, pre, input { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .85rem; }
+code { overflow-wrap: anywhere; }
+pre { background: var(--code); padding: 12px; overflow-x: auto; border-radius: 6px; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0 0 16px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 560px) { .kv { grid-template-columns: 1fr; } .kv dd { margin-bottom: 8px; } }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+input { flex: 1 1 320px; min-width: 0; padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--fg); }
+button { padding: 9px 14px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: #fff; font: inherit; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
+button#connect { background: transparent; color: var(--accent); }
+a { color: var(--accent); }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td code { font-size: .8rem; }
+.num { text-align: right; white-space: nowrap; }
+.status { min-height: 1.4em; color: var(--muted); }
+.status.ok { color: var(--ok); } .status.bad { color: var(--bad); }
+.fine { font-size: .8rem; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding: 20px 16px 40px; font-size: .85rem; color: var(--muted); }

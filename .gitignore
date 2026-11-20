@@ -1,0 +1,7 @@
+target/
+node_modules/
+*.cookie
+.env
+.env.*
+*.key
+wallet*.sqlite
