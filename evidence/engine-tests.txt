@@ -1,0 +1,11 @@
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test deposit_and_distribute_pro_rata_with_dust_kept has been running for over 60 seconds
+test empty_split_cannot_distribute has been running for over 60 seconds
+test invalid_shares_are_rejected has been running for over 60 seconds
+test recipients_and_label_are_readable has been running for over 60 seconds
+test empty_split_cannot_distribute ... ok
+test recipients_and_label_are_readable ... ok
+test deposit_and_distribute_pro_rata_with_dust_kept ... ok
+test invalid_shares_are_rejected ... ok
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 83.83s
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

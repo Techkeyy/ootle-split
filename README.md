@@ -70,7 +70,7 @@ The script remaps local paths (cargo home and repo root) to `/build/...`, so the
 cd template && cargo test
 ```
 
-The tests use `tari_template_test_tooling = "=0.54.0"`, which runs the real Ootle engine. That engine depends on the Cranelift wasm compiler, which does not build on Windows, so run the tests on Linux, macOS or WSL. They cover:
+Result (WSL Ubuntu, 2026-11-20): 4 passed, 0 failed (`evidence/engine-tests.txt`). The tests use `tari_template_test_tooling = "=0.54.0"`, which runs the real Ootle engine. That engine depends on the Cranelift wasm compiler, which does not build on Windows, so run the tests on Linux, macOS or WSL. They cover:
 - a 50/30/20 split of 1001 units, which pays 500/300/200 and keeps 1 unit of dust;
 - a second round that pays the dust out;
 - the read methods;
